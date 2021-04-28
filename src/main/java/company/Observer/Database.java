@@ -1,8 +1,9 @@
 package company.Observer;
 
 public interface Database {
-    void insertUser(String userName);
+    void insertUser(Person person);
     void removeUser(String userName);
-    void insert(String road);
-    void remove(String road);
+    void insertRoad(Roads roads);
+    void removeRoad(String roads);
+    void searchSomeRoad(String searchRoad);
 }

@@ -4,8 +4,11 @@ import company.Mediator.FirstSpeaker;
 import company.Mediator.SecondSpeaker;
 import company.Mediator.Speaker;
 import company.Mediator.TextChat;
-import company.Observer.Adapter;
-import company.Observer.Database;
+import company.Observer.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,13 +27,25 @@ public class Main {
         first.sendMessage("We are close all trips");
 
         System.out.println("=================================");
-        
+
         second1.sendMessage("Hello train #1 is late !");
 
         Database database = new Adapter();
-        database.insert("Kiev");
-        database.insertUser("Dima");
-        database.remove("Kiev");
-        database.removeUser("Dima");
+
+
+
+
+        database.removeUser("Pasha");
+        database.insertUser(new Person("Dima").setArrivel("Harkiv").setTicketNumber(31));
+
+        System.out.println("=================================");
+
+        database.insertRoad(new Roads("Lviv").setLarge(375) .setLocalDate(LocalDate.now().plusDays(64)));
+        /*database.removeRoad("Harkiv");*/
+
+        System.out.println("============================================");
+
+        database.searchSomeRoad("Lviv");
+
     }
 }

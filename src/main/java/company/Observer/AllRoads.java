@@ -19,4 +19,7 @@ public class AllRoads implements Observed{
     public void removeRoad() {
         System.out.println("REMOVE ROAD");
     }
+
+    @Override
+    public void searchRoad() { System.out.println("Search Roads"); }
 }

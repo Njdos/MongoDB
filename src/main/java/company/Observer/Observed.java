@@ -5,4 +5,5 @@ public interface Observed {
     void removeObserver();
     void addRoad();
     void removeRoad();
+    void searchRoad();
 }
