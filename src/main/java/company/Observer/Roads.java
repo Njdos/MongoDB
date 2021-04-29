@@ -6,6 +6,7 @@ public class Roads {
     private String road;
     public int large;
     public LocalDate localDate;
+    private int platform;
 
     @Override
     public String toString() {
@@ -20,6 +21,10 @@ public class Roads {
         return road;
     }
 
+    public int getPlatform() {
+        return platform;
+    }
+
     public Roads(String road) {
         this.road = road;
     }
@@ -29,9 +34,15 @@ public class Roads {
         return this;
     }
 
+    public Roads setPlatform(int platform) {
+        this.platform = platform;
+        return this;
+    }
+
     public int getLarge() {
         return large;
     }
+
 
     public Roads setLarge(int large) {
         this.large = large;
@@ -47,10 +58,11 @@ public class Roads {
         return this;
     }
 
-    public Roads(String road, int large, LocalDate localDate) {
+    public Roads(String road, int large, LocalDate localDate, int platform) {
         this.road = road;
         this.large = large;
         this.localDate = localDate;
+        this.platform = platform;
     }
     public Roads() {}
 }

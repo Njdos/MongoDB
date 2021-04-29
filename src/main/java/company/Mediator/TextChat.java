@@ -19,11 +19,11 @@ public class TextChat implements Chat{
     @Override
     public void sendMessage(String message, Speaker speaker) {
 
-        for (Speaker s : speakers){
-            if (s != speaker){
-                s.getMessage(message);
-            }
+      for (Speaker s : speakers){
+        if (s != speaker){
+            s.getMessage(message);
         }
-        first.getMessage(message);
     }
+        first.getMessage(message);
+}
 }

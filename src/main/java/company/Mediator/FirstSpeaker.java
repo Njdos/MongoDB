@@ -1,6 +1,21 @@
 package company.Mediator;
 
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirstSpeaker implements Speaker {
+
+    final String MONGO_URI = "mongodb+srv://root:1111@cluster0.1fv2o.mongodb.net/test";
+
+    MongoCollection<Document> collection = new MongoClient(new MongoClientURI(MONGO_URI)).getDatabase("data").getCollection("njdos");
+    List<String> users = new ArrayList<>();
 
     Chat chat;
     String name;
@@ -25,6 +40,17 @@ public class FirstSpeaker implements Speaker {
 
     @Override
     public void getMessage(String message) {
-        System.out.println(this.name + " receiving message: " + message);
+
+        Bson searchByName = Filters.exists("name");
+        Bson searchByPlatformElse = Filters.gte("platform",3);
+
+        if (users.isEmpty()) {
+            for (Document document : collection.find(Filters.and(searchByName,searchByPlatformElse))) {
+                users.add((String) document.get("name"));
+            }
+        }
+
+        System.out.println("Other passengers receiving message: " + message );
+        users.forEach(System.out::println);
     }
 }

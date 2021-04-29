@@ -8,6 +8,7 @@ import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,22 +51,44 @@ public class Adapter extends AllRoads implements Database {
 
     @Override
     public void removeRoad(String road) {
-        collection.deleteOne(new Document("road",road));
+        collection.deleteOne(new Document("road", road));
         removeRoad();
 
 
-        List<String> users = new ArrayList<>();
+        List<String> users1 = new ArrayList<>();
+        List<String> users2 = new ArrayList<>();
 
-        for (Document document : collection.find(Filters.exists("name"))) {
-            users.add((String) document.get("name"));
+        Bson filterByName = Filters.exists("name");
+/*        Bson filterByFirstPlatform = Filters.eq("platform",1);
+        Bson filterBySecondPlatform = Filters.eq("platform",2);*/
+
+        for (Document document1 : collection.find(filterByName)) {
+            if (document1.get("platform").equals(1)) {
+                users1.add((String) document1.get("name"));
+            }
+        }
+        for (Document document2 : collection.find(Filters.exists("name"))) {
+            if (document2.get("platform").equals(2)) {
+                users2.add((String) document2.get("name"));
+            }
         }
 
         System.out.println("============================================");
 
-        for (String user : users){
+        for (String user : users1) {
             System.out.println(user);
-            for(Document document : collection.find(Filters.exists("road"))) {
-                System.out.println(document.toJson());
+            for (Document document : collection.find(Filters.exists("road"))) {
+                if (document.get("platform").equals(1)) {
+                    System.out.println(document.toJson());
+                }
+            }
+        }
+        for (String user : users2) {
+            System.out.println(user);
+            for (Document document : collection.find(Filters.exists("road"))) {
+                if (document.get("platform").equals(2)) {
+                    System.out.println(document.toJson());
+                }
             }
         }
     }
@@ -84,18 +107,40 @@ public class Adapter extends AllRoads implements Database {
         collectionClass.insertOne(roads);
         addRoad();
 
-        List<String> users = new ArrayList<>();
+        List<String> users1 = new ArrayList<>();
+        List<String> users2 = new ArrayList<>();
 
-        for (Document document : collection.find(Filters.exists("name"))) {
-            users.add((String) document.get("name"));
+        Bson filterByName = Filters.exists("name");
+/*        Bson filterByFirstPlatform = Filters.eq("platform",1);
+        Bson filterBySecondPlatform = Filters.eq("platform",2);*/
+
+        for (Document document1 : collection.find(filterByName)) {
+            if (document1.get("platform").equals(1)) {
+                users1.add((String) document1.get("name"));
+            }
+        }
+        for (Document document2 : collection.find(Filters.exists("name"))) {
+            if (document2.get("platform").equals(2)) {
+                users2.add((String) document2.get("name"));
+            }
         }
 
         System.out.println("============================================");
 
-        for (String user : users){
+        for (String user : users1) {
             System.out.println(user);
-            for(Document document : collection.find(Filters.exists("road"))) {
-                System.out.println(document.toJson());
+            for (Document document : collection.find(Filters.exists("road"))) {
+                if (document.get("platform").equals(1)) {
+                    System.out.println(document.toJson());
+                }
+            }
+        }
+        for (String user : users2) {
+            System.out.println(user);
+            for (Document document : collection.find(Filters.exists("road"))) {
+                if (document.get("platform").equals(2)) {
+                    System.out.println(document.toJson());
+                }
             }
         }
     }

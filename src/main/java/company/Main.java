@@ -24,6 +24,7 @@ public class Main {
         textChat.addSpeakerToChat(second1);
         textChat.addSpeakerToChat(second2);
 
+
         first.sendMessage("We are close all trips");
 
         System.out.println("=================================");
@@ -32,20 +33,25 @@ public class Main {
 
         Database database = new Adapter();
 
+        database.insertUser(new Person("Oleh")
+                .setArrivel("Kiev")
+                .setTicketNumber(75)
+                .setPlatform(1));
 
-
-
-        database.removeUser("Pasha");
-        database.insertUser(new Person("Dima").setArrivel("Harkiv").setTicketNumber(31));
+        database.removeUser("Oleh");
 
         System.out.println("=================================");
 
-        database.insertRoad(new Roads("Lviv").setLarge(375) .setLocalDate(LocalDate.now().plusDays(64)));
-        /*database.removeRoad("Harkiv");*/
+        database.insertRoad(new Roads("Harkiv")
+                .setLarge(72)
+                .setLocalDate(LocalDate.now()
+                        .plusDays(7))
+                .setPlatform(2));
+        database.removeRoad("Harkiv");
 
         System.out.println("============================================");
 
-        database.searchSomeRoad("Lviv");
+        database.searchSomeRoad("Harkiv");
 
     }
 }
