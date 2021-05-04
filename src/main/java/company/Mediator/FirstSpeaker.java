@@ -4,12 +4,14 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import company.Platforms;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Platforms
 public class FirstSpeaker implements Speaker {
 
     final String MONGO_URI = "mongodb+srv://root:1111@cluster0.1fv2o.mongodb.net/test";
@@ -39,10 +41,10 @@ public class FirstSpeaker implements Speaker {
     }
 
     @Override
-    public void getMessage(String message) {
+    public void getMessage(String message,Speaker speaker) {
 
         Bson searchByName = Filters.exists("name");
-        Bson searchByPlatformElse = Filters.gte("platform",3);
+        Bson searchByPlatformElse= Filters.eq("platform", String.valueOf(Platforms.somePlatform.Else));
 
         if (users.isEmpty()) {
             for (Document document : collection.find(Filters.and(searchByName,searchByPlatformElse))) {

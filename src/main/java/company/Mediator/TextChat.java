@@ -21,9 +21,9 @@ public class TextChat implements Chat{
 
       for (Speaker s : speakers){
         if (s != speaker){
-            s.getMessage(message);
+            s.getMessage(message,speaker);
         }
     }
-        first.getMessage(message);
+        first.getMessage(message,speaker);
 }
 }

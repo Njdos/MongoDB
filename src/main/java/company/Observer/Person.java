@@ -4,9 +4,9 @@ public class Person {
     private String name;
     private int ticketNumber;
     private String arrivel;
-    private int platform;
+    private String platform;
 
-    public Person(String name, int ticketNumber, String arrivel, int platform) {
+    public Person(String name, int ticketNumber, String arrivel, String platform) {
         this.name = name;
         this.ticketNumber = ticketNumber;
         this.arrivel = arrivel;
@@ -25,7 +25,7 @@ public class Person {
         return arrivel;
     }
 
-    public int getPlatform() {
+    public String getPlatform() {
         return platform;
     }
 
@@ -39,7 +39,7 @@ public class Person {
         return this;
     }
 
-    public Person setPlatform(int platform) {
+    public Person setPlatform(String platform) {
         this.platform = platform;
         return this;
     }

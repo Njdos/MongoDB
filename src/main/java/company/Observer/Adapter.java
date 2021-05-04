@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import company.Platforms;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -16,6 +17,7 @@ import java.util.List;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+@Platforms
 public class Adapter extends AllRoads implements Database {
 
     private static final String MONGO_URI = "mongodb+srv://root:1111@cluster0.1fv2o.mongodb.net/test";
@@ -59,16 +61,14 @@ public class Adapter extends AllRoads implements Database {
         List<String> users2 = new ArrayList<>();
 
         Bson filterByName = Filters.exists("name");
-/*        Bson filterByFirstPlatform = Filters.eq("platform",1);
-        Bson filterBySecondPlatform = Filters.eq("platform",2);*/
 
         for (Document document1 : collection.find(filterByName)) {
-            if (document1.get("platform").equals(1)) {
+            if (document1.get("platform").equals(String.valueOf(Platforms.somePlatform.Firstly))) {
                 users1.add((String) document1.get("name"));
             }
         }
         for (Document document2 : collection.find(Filters.exists("name"))) {
-            if (document2.get("platform").equals(2)) {
+            if (document2.get("platform").equals(String.valueOf(Platforms.somePlatform.Secondary))) {
                 users2.add((String) document2.get("name"));
             }
         }
@@ -78,7 +78,7 @@ public class Adapter extends AllRoads implements Database {
         for (String user : users1) {
             System.out.println(user);
             for (Document document : collection.find(Filters.exists("road"))) {
-                if (document.get("platform").equals(1)) {
+                if (document.get("platform").equals(String.valueOf(Platforms.somePlatform.Firstly))) {
                     System.out.println(document.toJson());
                 }
             }
@@ -86,7 +86,7 @@ public class Adapter extends AllRoads implements Database {
         for (String user : users2) {
             System.out.println(user);
             for (Document document : collection.find(Filters.exists("road"))) {
-                if (document.get("platform").equals(2)) {
+                if (document.get("platform").equals(String.valueOf(Platforms.somePlatform.Secondary))) {
                     System.out.println(document.toJson());
                 }
             }
@@ -111,16 +111,14 @@ public class Adapter extends AllRoads implements Database {
         List<String> users2 = new ArrayList<>();
 
         Bson filterByName = Filters.exists("name");
-/*        Bson filterByFirstPlatform = Filters.eq("platform",1);
-        Bson filterBySecondPlatform = Filters.eq("platform",2);*/
 
         for (Document document1 : collection.find(filterByName)) {
-            if (document1.get("platform").equals(1)) {
+            if (document1.get("platform").equals(String.valueOf(Platforms.somePlatform.Firstly))) {
                 users1.add((String) document1.get("name"));
             }
         }
         for (Document document2 : collection.find(Filters.exists("name"))) {
-            if (document2.get("platform").equals(2)) {
+            if (document2.get("platform").equals(String.valueOf(Platforms.somePlatform.Secondary))) {
                 users2.add((String) document2.get("name"));
             }
         }
@@ -130,7 +128,7 @@ public class Adapter extends AllRoads implements Database {
         for (String user : users1) {
             System.out.println(user);
             for (Document document : collection.find(Filters.exists("road"))) {
-                if (document.get("platform").equals(1)) {
+                if (document.get("platform").equals(String.valueOf(Platforms.somePlatform.Firstly))) {
                     System.out.println(document.toJson());
                 }
             }
@@ -138,7 +136,7 @@ public class Adapter extends AllRoads implements Database {
         for (String user : users2) {
             System.out.println(user);
             for (Document document : collection.find(Filters.exists("road"))) {
-                if (document.get("platform").equals(2)) {
+                if (document.get("platform").equals(String.valueOf(Platforms.somePlatform.Secondary))) {
                     System.out.println(document.toJson());
                 }
             }

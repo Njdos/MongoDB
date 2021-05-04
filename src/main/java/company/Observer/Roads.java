@@ -1,12 +1,14 @@
 package company.Observer;
 
+import company.Platforms;
+
 import java.time.LocalDate;
 
 public class Roads {
     private String road;
     public int large;
     public LocalDate localDate;
-    private int platform;
+    private String platform;
 
     @Override
     public String toString() {
@@ -21,7 +23,7 @@ public class Roads {
         return road;
     }
 
-    public int getPlatform() {
+    public String getPlatform() {
         return platform;
     }
 
@@ -33,8 +35,7 @@ public class Roads {
         this.road = road;
         return this;
     }
-
-    public Roads setPlatform(int platform) {
+    public Roads setPlatform(String platform) {
         this.platform = platform;
         return this;
     }
@@ -58,7 +59,7 @@ public class Roads {
         return this;
     }
 
-    public Roads(String road, int large, LocalDate localDate, int platform) {
+    public Roads(String road, int large, LocalDate localDate, String platform) {
         this.road = road;
         this.large = large;
         this.localDate = localDate;
